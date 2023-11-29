@@ -2,9 +2,9 @@ package com.controle.gastos.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -37,7 +37,7 @@ public class Despesa {
 	@JsonInclude(Include.NON_NULL)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CATEGORIA_ID")
-	@JsonManagedReference
+	@JsonIgnore
 	private Categoria categoria;
 
 	

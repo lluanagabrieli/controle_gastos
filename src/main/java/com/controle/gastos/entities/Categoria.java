@@ -1,13 +1,11 @@
 package com.controle.gastos.entities;
 
-import java.util.Set;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,10 +25,9 @@ public class Categoria {
 	@JsonInclude(Include.NON_NULL)
 	private Float orcamento;
 	
-	@JsonBackReference 
 	@JsonInclude(Include.NON_NULL)
-	@OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-	private Set<Despesa> despesas;
+	@OneToMany(mappedBy = "categoria")
+	private List<Despesa> despesas;
 
 	public Long getId() {
 		return id;
@@ -56,11 +53,11 @@ public class Categoria {
 		this.orcamento = orcamento;
 	}
 	
-	public Set<Despesa> getDespesas() {
+	public List<Despesa> getDespesas() {
 		return despesas;
 	}
-
-	public void setDespesas(Set<Despesa> despesas) {
+	
+	public void setDespesas(List<Despesa> despesas) {
 		this.despesas = despesas;
-	}	
+	}
 }

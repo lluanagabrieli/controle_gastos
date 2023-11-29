@@ -21,33 +21,33 @@ import com.controle.gastos.repositories.CategoriaRepository;
 public class CategoriaController {
 	
 	@Autowired
-	private CategoriaRepository repositoryCategoria;
+	private CategoriaRepository repository;
 
 	@GetMapping
-	public List<Categoria> listar() {
-		List<Categoria> result = repositoryCategoria.findAll();
+	public List<Categoria> findAll() {
+		List<Categoria> result = repository.findAll();
 		return result;
 	}
 
 	@PostMapping()
 	public Categoria salvar(@RequestBody Categoria categoria){
-		return repositoryCategoria.save(categoria);
+		return repository.save(categoria);
 	}
 
 	@CrossOrigin
 	@GetMapping(value = "/{id}")
-	public Categoria pegarPorId(@PathVariable (value = "id")Long id){
-		return repositoryCategoria.findById(id).orElse(null);
+	public Categoria findById(@PathVariable (value = "id")Long id){
+		return repository.findById(id).orElse(null);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public void deletar(@PathVariable(value = "id")Long id){
-		repositoryCategoria.deleteById(id);
+		repository.deleteById(id);
 	}
 
 	@PutMapping(value = "{id}")
 	public void atualizar(@RequestBody Categoria categoria, @PathVariable("id") Long id){
 		categoria.setId(id);
-		repositoryCategoria.save(categoria);
+		repository.save(categoria);
 	}
 }
